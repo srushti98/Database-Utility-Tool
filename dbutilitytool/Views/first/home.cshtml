@@ -1,0 +1,92 @@
+﻿@using  dbutilitytool.Models
+@model uidata
+
+            
+@{
+    Layout = null;
+}
+@Styles.Render("~/Content/css")
+@Scripts.Render("~/bundles/modernizr")
+<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
+<script type="text/javascript">
+    $(function () {
+        $("#hiddenthing").hide();
+
+        $("input[name='at']").click(function () {
+            if ($("#r1").is(":checked")) {
+                $("#hiddenthing").hide();
+            } else {
+                $("#hiddenthing").show();
+            }
+        });
+    });
+</script>
+
+
+
+
+<center>
+
+    @using (Html.BeginForm("connectservercall", "first"))
+    {
+
+        <div class="form-group">
+            @Html.LabelFor(x => x.servername, htmlAttributes: new { @class = "control-label" })<br />
+            @Html.TextBoxFor(x => x.servername, new { @class = "form-control" })<br />
+        </div>
+
+
+        <div class="form-check">
+            @Html.Label("Windows Authentication", htmlAttributes: new { @class = "form-check-label" })
+            @Html.RadioButtonFor(x => x.at, 1, new { @id = "r1", @checked = "checked", @class = "form-check-input" })
+
+        </div>
+        <div class="form-check">
+            @Html.Label("Sql Server Authentication", htmlAttributes: new { @class = "form-check-label", id = "inner2" })
+            @Html.RadioButtonFor(x => x.at, 2, new { @id = "r2", @class = "form-check-input" })<br />
+
+        </div>
+        <div id="hiddenthing">
+            <div class="form-group">
+                @Html.LabelFor(x => x.username, htmlAttributes: new { @id = "lt2", @class = "control-label" })
+                @Html.TextBoxFor(x => x.username, new { id = "t2", @class = "form-control" })<br />
+            </div>
+            <div class="form-group">
+                @Html.LabelFor(x => x.password, htmlAttributes: new { @id = "lt3", @class = "control-label" })
+                @Html.PasswordFor(x => x.password, new { id = "t3", @class = "form-control" })<br />
+            </div>
+        </div>
+        <div>
+            @ViewBag.connmessage
+        </div>
+
+        <button type="submit" class="btn btn-primary">CONNECT</button>
+
+    }
+
+
+
+   <form>
+        <div class="form-group">
+            @Html.LabelFor(x => x.path, htmlAttributes: new { @class = "control-label" })<br />
+            @Html.TextBoxFor(x => x.path, new { @class = "form-control" })<br />
+        </div>
+
+        
+
+        <button type="submit" class="btn btn-primary" formaction="@Url.Action("executefiles","first")" formmethod="post">execute</button>
+        
+    </form>
+   
+   @ViewBag.hello;
+
+    </center>
+
+srushti  SLB-JDM9XT2<br>
+sahil   SLB-6899XT2<br>
+asus    DESKTOP-NB4IKD0<br>
+path  C:\\Users\\ssachan2\\Desktop\\testing <br>
+path asus C:\\Users\\Asus\\Desktop\\testing <br>
+
+@Scripts.Render("~/bundles/jquery")
+@Scripts.Render("~/bundles/bootstrap")
